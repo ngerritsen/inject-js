@@ -1,9 +1,10 @@
 {
   "name": "inject.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A lightweight dependency injector for Javascript",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "ava"
   },
   "repository": {
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/ngerritsen/inject.js#readme",
   "devDependencies": {
-    "ava": "^0.14.0"
+    "ava": "^0.14.0",
+    "eslint": "^2.7.0"
   }
 }

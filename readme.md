@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ngerritsen/inject.js.svg?branch=master)](https://travis-ci.org/ngerritsen/inject.js)
+
 # inject.js
 
 A lightweight dependency injector for Javascript
