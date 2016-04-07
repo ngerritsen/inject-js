@@ -1,7 +1,7 @@
 {
   "name": "inject.js",
-  "version": "1.0.0",
-  "description": "Small and simple dependency container",
+  "version": "1.0.1",
+  "description": "A lightweight dependency injector for Javascript",
   "main": "index.js",
   "scripts": {
     "test": "ava"
