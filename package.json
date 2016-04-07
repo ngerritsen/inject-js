@@ -1,0 +1,28 @@
+{
+  "name": "inject.js",
+  "version": "1.0.0",
+  "description": "Small and simple dependency container",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngerritsen/inject.js.git"
+  },
+  "keywords": [
+    "di",
+    "dependency",
+    "injection",
+    "javascript"
+  ],
+  "author": "Niels Gerritsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ngerritsen/inject.js/issues"
+  },
+  "homepage": "https://github.com/ngerritsen/inject.js#readme",
+  "devDependencies": {
+    "ava": "^0.14.0"
+  }
+}
