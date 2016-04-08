@@ -27,6 +27,27 @@ var injector = require('inject.js')
 var someDependency = injector.resolve('someDependency')
 ```
 
+Resolving multiple dependencies:
+
+```js
+var injector = require('inject.js')
+
+var dependencies = injector.resolve([ 'someDependency', 'otherDependency' ])
+/**
+dependencies = {
+  someDependency: someDependency,
+  otherDependency: otherDependency
+}
+**/
+
+// Using ES6
+
+const { someDependency, otherDependency } = injector.resolve([
+  'someDependency',
+  'otherDependency'
+])
+```
+
 Resetting:
 
 ```js
