@@ -18,8 +18,13 @@ test('resets dependencies', function (t) {
 
 test('registers and resolves dependencies', function (t) {
   injector.register('a', 1)
+  injector.register('b', 2)
 
   t.is(injector.resolve('a'), 1)
+  t.deepEqual(injector.resolve([ 'a', 'b' ]), {
+    a: 1,
+    b: 2
+  })
 })
 
 test('fails when trying to register an existing dependency', function (t) {
@@ -40,6 +45,12 @@ test('fails when trying to resolve an unexisting dependency', function (t) {
   t.throws(function () {
     injector.resolve('a', 2)
   }, 'Dependency "a" is not found.')
+
+  injector.register('a', 1)
+
+  t.throws(function () {
+    injector.resolve([ 'a', 'b' ], 2)
+  }, 'Dependency "b" is not found.')
 })
 
 test('mocks dependencies', function (t) {

@@ -40,7 +40,7 @@ injector.reset()
 ## Api reference
 
 ### `injector.register(name: String, dependency: Any)`
-### `injector.resolve(name: String) => dependency: Any`
+### `injector.resolve(name(s): String|Array) => dependency: Any|Object`
 ### `injector.reset()`
 
 #### Unit testing:
