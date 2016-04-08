@@ -42,3 +42,7 @@ injector.reset()
 ### `injector.register(name: String, dependency: Any)`
 ### `injector.resolve(name: String) => dependency: Any`
 ### `injector.reset()`
+
+#### Unit testing:
+
+### `injector.mock(name: String, mockDependency: Any)`

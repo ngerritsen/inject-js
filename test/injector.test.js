@@ -19,9 +19,7 @@ test('resets dependencies', function (t) {
 test('registers and resolves dependencies', function (t) {
   injector.register('a', 1)
 
-  var a = injector.resolve('a')
-
-  t.is(a, 1)
+  t.is(injector.resolve('a'), 1)
 })
 
 test('fails when trying to register an existing dependency', function (t) {
@@ -42,4 +40,14 @@ test('fails when trying to resolve an unexisting dependency', function (t) {
   t.throws(function () {
     injector.resolve('a', 2)
   }, 'Dependency "a" is not found.')
+})
+
+test('mocks dependencies', function (t) {
+  injector.register('a', 1)
+
+  injector.mock('a', 2)
+  injector.mock('b', 3)
+
+  t.is(injector.resolve('a'), 2, 'Mocks existing dependencies')
+  t.is(injector.resolve('b'), 3, 'Mocks unexisting dependencies')
 })
