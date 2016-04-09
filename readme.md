@@ -10,15 +10,33 @@ A lightweight dependency injector for Javascript
 npm install inject.js
 ```
 
+**Usage as a module**
+
+```js
+var injector = require('inject.js')
+```
+
+**Usage directly in browser**
+
+To use directly in the browser, you can use the packaged version. This will make the injector globally available.
+
+_Do not use this version in nodejs or when you bundle your application!_
+
+```html
+<script src="node_modules/inject.js/dist/inject.min.js"></script>
+
+<!-- For debugging or testing -->
+<script src="node_modules/inject.js/dist/inject.js"></script>
+```
+
 **Registering dependencies**
 
 Register a dependency with `injector.register`. The name must be a valid string, the dependency itself can by *anything*. You cannot register the same name twice.
 
 ```js
-var injector = require('inject.js')
 var someDependency = require('./some-dependency')
 
-injector.register('someDependency', someDependency)
+injector.register('someDependency', { someMethod: 'abc' })
 ```
 
 *It's recommended to use valid variable names as a name. This is handy when resolving multiple dependencies.*
@@ -28,8 +46,6 @@ injector.register('someDependency', someDependency)
 Elsewhere import the injector and get the dependency with `injector.resolve(name)`
 
 ```js
-var injector = require('inject.js')
-
 var someDependency = injector.resolve('someDependency')
 ```
 
@@ -38,18 +54,13 @@ var someDependency = injector.resolve('someDependency')
 Providing an array to `injector.resolve` will return an object with the dependency names as keys and dependencies as values.
 
 ```js
-var injector = require('inject.js')
-
 var dependencies = injector.resolve([ 'someDependency', 'otherDependency' ])
-/**
-dependencies = {
-  someDependency: someDependency,
-  otherDependency: otherDependency
-}
-**/
+
+// Accessing dependencies:
+dependencies.someDependency
+dependencies.otherDependency
 
 // Using ES6
-
 const { someDependency, otherDependency } = injector.resolve([
   'someDependency',
   'otherDependency'
@@ -61,8 +72,6 @@ const { someDependency, otherDependency } = injector.resolve([
 Run `injector.reset()` to remove all dependencies.
 
 ```js
-var injector = require('inject.js')
-
 injector.reset()
 ```
 
@@ -73,10 +82,6 @@ With `injector.mock(name, mockDependency)` you can mock a dependency for unit te
 *If process.env.NODE_ENV is set to production, mock will not be available by design.*
 
 ```js
-//my unit test
-
-var injector = require('inject.js')
-
 injector.mock('someDependency', { test: 'test' })
 ```
 

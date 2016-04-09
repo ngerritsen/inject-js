@@ -1,13 +1,18 @@
 {
   "name": "inject.js",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A lightweight dependency injector for Javascript",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "webpack; NODE_ENV=production webpack",
     "lint": "eslint .",
     "test": "ava",
     "test:watch": "ava --watch"
   },
+  "files": [
+    "dist",
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ngerritsen/inject.js.git"
@@ -26,6 +31,7 @@
   "homepage": "https://github.com/ngerritsen/inject.js#readme",
   "devDependencies": {
     "ava": "^0.14.0",
-    "eslint": "^2.7.0"
+    "eslint": "^2.7.0",
+    "webpack": "^1.12.14"
   }
 }
