@@ -4,7 +4,7 @@
 
 _A lightweight dependency injector for Javascript._
 
-Inject.js weighs just 1kb minified and has no dependencies!
+Inject.js weighs just ~2kb minified and has no dependencies!
 
 ## Guide
 
@@ -69,6 +69,18 @@ const { someDependency, otherDependency } = injector.resolve([
 ])
 ```
 
+**Lazy resolving**
+
+Lazy resolving is useful when you are in an environment (like the browser) where scripts might be loaded async. Could also let your app be more flexible about the load order of scripts. You provide the dependencies you need to wait for and a callback that is called when all dependencies are resolved. The callback is called with the dependencies as arguments.
+
+```js
+injector.lazy(['depA', 'depB'], runApp)
+
+function runApp(depA, depB) {
+  // Do your thing :)
+}
+```
+
 **Resetting**
 
 Run `injector.reset()` to remove all dependencies.
@@ -91,5 +103,6 @@ injector.mock('someDependency', { test: 'test' })
 
 ### `injector.register(name: String, dependency: Any)`
 ### `injector.resolve(name(s): String|Array) => dependency: Any|Object`
+### `injector.lazy(dependencies: Array, callback: Function)`
 ### `injector.reset()`
 ### `injector.mock(name: String, mockDependency: Any)`
