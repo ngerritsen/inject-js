@@ -2,7 +2,9 @@
 
 # inject.js
 
-A lightweight dependency injector for Javascript
+_A lightweight dependency injector for Javascript._
+
+Inject.js weighs just 1kb minified and has no dependencies!
 
 ## Guide
 
@@ -77,9 +79,9 @@ injector.reset()
 
 **Mocking** *(Only use for unit testing!)*
 
-With `injector.mock(name, mockDependency)` you can mock a dependency for unit testing. It works almost the same as `injector.register`. If a dependency already exists, `injector.mock` will override it.
+With `injector.mock(name, mockDependency)` you can mock a dependency for unit testing. It works the same as `injector.register`, only if a dependency already exists, `injector.mock` will override it.
 
-*If process.env.NODE_ENV is set to production, mock will not be available by design.*
+*If process.env.NODE_ENV is set to production or in the minified packaged version, mock will not be available. This is to prevent it's usage outside of unit testing*
 
 ```js
 injector.mock('someDependency', { test: 'test' })
