@@ -10,7 +10,9 @@ A lightweight dependency injector for Javascript
 npm install inject.js
 ```
 
-Registering dependencies:
+**Registering dependencies**
+
+Register a dependency with `injector.register`. The name must be a valid string, the dependency itself can by *anything*. You cannot register the same name twice.
 
 ```js
 var injector = require('inject.js')
@@ -19,7 +21,11 @@ var someDependency = require('./some-dependency')
 injector.register('someDependency', someDependency)
 ```
 
-Resolving dependencies elsewhere:
+*It's recommended to use valid variable names as a name. This is handy when resolving multiple dependencies.*
+
+**Resolving dependencies**
+
+Elsewhere import the injector and get the dependency with `injector.resolve(name)`
 
 ```js
 var injector = require('inject.js')
@@ -27,7 +33,9 @@ var injector = require('inject.js')
 var someDependency = injector.resolve('someDependency')
 ```
 
-Resolving multiple dependencies:
+**Resolving multiple dependencies**
+
+Providing an array to `injector.resolve` will return an object with the dependency names as keys and dependencies as values.
 
 ```js
 var injector = require('inject.js')
@@ -48,14 +56,28 @@ const { someDependency, otherDependency } = injector.resolve([
 ])
 ```
 
-Resetting:
+**Resetting**
+
+Run `injector.reset()` to remove all dependencies.
 
 ```js
 var injector = require('inject.js')
 
 injector.reset()
+```
 
-// Dependencies are now gone
+**Mocking** *(Only use for unit testing!)*
+
+With `injector.mock(name, mockDependency)` you can mock a dependency for unit testing. It works almost the same as `injector.register`. If a dependency already exists, `injector.mock` will override it.
+
+*If process.env.NODE_ENV is set to production, mock will not be available by design.*
+
+```js
+//my unit test
+
+var injector = require('inject.js')
+
+injector.mock('someDependency', { test: 'test' })
 ```
 
 ## Api reference
@@ -63,7 +85,4 @@ injector.reset()
 ### `injector.register(name: String, dependency: Any)`
 ### `injector.resolve(name(s): String|Array) => dependency: Any|Object`
 ### `injector.reset()`
-
-#### Unit testing:
-
 ### `injector.mock(name: String, mockDependency: Any)`
