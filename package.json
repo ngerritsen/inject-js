@@ -1,6 +1,6 @@
 {
   "name": "inject.js",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "A lightweight dependency injector for Javascript",
   "main": "lib/index.js",
   "scripts": {
