@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/ngerritsen/inject.js.svg?branch=master)](https://travis-ci.org/ngerritsen/inject.js)
-
 # inject.js
 
 _A lightweight dependency injector for Javascript._
@@ -26,7 +24,7 @@ npm install inject.js
 #### Usage as a module
 
 ```js
-var injector = require('inject.js')
+var injector = require("inject.js");
 ```
 
 #### Usage directly in browser
@@ -46,15 +44,15 @@ _Do not use this version in nodejs or when you bundle your application!_
 
 ### Registering dependencies
 
-Register a dependency with `injector.register`. The name must be a valid string, the dependency itself can by *anything*. You cannot register the same name twice.
+Register a dependency with `injector.register`. The name must be a valid string, the dependency itself can by _anything_. You cannot register the same name twice.
 
 ```js
-var someDependency = require('./some-dependency')
+var someDependency = require("./some-dependency");
 
-injector.register('someDependency', { someMethod: 'abc' })
+injector.register("someDependency", { someMethod: "abc" });
 ```
 
-*It's recommended to use valid variable names as a name. This is handy when resolving multiple dependencies.*
+_It's recommended to use valid variable names as a name. This is handy when resolving multiple dependencies._
 
 [Back to top ↑](#guide)
 
@@ -63,7 +61,7 @@ injector.register('someDependency', { someMethod: 'abc' })
 Elsewhere import the injector and get the dependency with `injector.resolve(name)`
 
 ```js
-var someDependency = injector.resolve('someDependency')
+var someDependency = injector.resolve("someDependency");
 ```
 
 #### Resolving multiple dependencies
@@ -71,17 +69,17 @@ var someDependency = injector.resolve('someDependency')
 Providing an array to `injector.resolve` will return an object with the dependency names as keys and dependencies as values.
 
 ```js
-var dependencies = injector.resolve([ 'someDependency', 'otherDependency' ])
+var dependencies = injector.resolve(["someDependency", "otherDependency"]);
 
 // Accessing dependencies:
-dependencies.someDependency
-dependencies.otherDependency
+dependencies.someDependency;
+dependencies.otherDependency;
 
 // Using ES6
 const { someDependency, otherDependency } = injector.resolve([
-  'someDependency',
-  'otherDependency'
-])
+  "someDependency",
+  "otherDependency",
+]);
 ```
 
 [Back to top ↑](#guide)
@@ -91,7 +89,7 @@ const { someDependency, otherDependency } = injector.resolve([
 Lazy resolving is useful when you are in an environment (like the browser) where scripts might be loaded async. Could also let your app be more flexible about the load order of scripts. You provide the dependencies you need to wait for and a callback that is called when all dependencies are resolved. The callback is called with the dependencies as arguments.
 
 ```js
-injector.lazy(['depA', 'depB'], runApp)
+injector.lazy(["depA", "depB"], runApp);
 
 function runApp(depA, depB) {
   // Do your thing :)
@@ -105,19 +103,19 @@ function runApp(depA, depB) {
 Run `injector.reset()` to remove all dependencies.
 
 ```js
-injector.reset()
+injector.reset();
 ```
 
 [Back to top ↑](#guide)
 
-### Mocking *(Only use for unit testing!)*
+### Mocking _(Only use for unit testing!)_
 
 With `injector.mock(name, mockDependency)` you can mock a dependency for unit testing. It works the same as `injector.register`, only if a dependency already exists, `injector.mock` will override it.
 
-*If process.env.NODE_ENV is set to production or in the minified packaged version, mock will not be available. This is to prevent it's usage outside of unit testing*
+_If process.env.NODE_ENV is set to production or in the minified packaged version, mock will not be available. This is to prevent it's usage outside of unit testing_
 
 ```js
-injector.mock('someDependency', { test: 'test' })
+injector.mock("someDependency", { test: "test" });
 ```
 
 [Back to top ↑](#guide)
@@ -125,9 +123,13 @@ injector.mock('someDependency', { test: 'test' })
 ## Api reference
 
 ### `injector.register(name: String, dependency: Any)`
+
 ### `injector.resolve(name(s): String|Array) => dependency: Any|Object`
+
 ### `injector.lazy(dependencies: Array, callback: Function)`
+
 ### `injector.reset()`
+
 ### `injector.mock(name: String, mockDependency: Any)`
 
 [Back to top ↑](#guide)
